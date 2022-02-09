@@ -11,7 +11,7 @@ SRCS = list_manipulation/push_a.c list_manipulation/push_b.c\
 	list_manipulation/ft_lstsize.c list_manipulation/ft_lstlast.c\
 	list_manipulation/ft_lstadd_back.c list_manipulation/ft_lstnew.c\
 	utils/ft_atoi.c list_manipulation/largest_increasing_sequence.c\
-	list_manipulation/separate_ab.c 
+	list_manipulation/separate_ab.c list_manipulation/position_ab.c
 OBJS = $(SRCS:.c=.o)
 
 all:	$(NAME) compile

@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:10:13 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/09 15:10:41 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/09 15:27:03 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int is_existe(int c, int list[])
 {
-	int i = 1;
+	int i;
 
+	i = 1;
 	while (i <= list[0])
 	{
 		if (c == list[i])
