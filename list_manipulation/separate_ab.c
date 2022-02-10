@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:10:13 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/09 15:27:03 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:26:49 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void separet_lis(t_list **top_a, t_list **top_b, int *list)
 	{
 		if (!is_existe((*top_a)->content, list))
 		{
-			push_b(top_b, top_a);
+			push(top_b, top_a);
 			size--;
 		}
 		else
-			rotate_a(top_a);
+			rotate(top_a);
 		i++;
 	}
 }

@@ -22,10 +22,11 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 			*lst = new;
 		else
 		{
-			head = (*lst);
+			head = *lst;
 			while (head->next)
 				head = head->next;
 			head->next = new;
+			new->prev = head;
 		}
 	}
 }

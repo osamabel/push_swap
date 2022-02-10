@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:31:30 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/09 16:30:29 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:01:40 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,113 +21,89 @@ void	set_pos_b(t_list *top_b, t_postion *pos)
 {
 	int	i;
 	int	j;
-	t_list *head;
+	int	size;
 
 	i = 0;
 	j = 0;
-	head = top_b;
-	while (i <= ft_lstsize(top_b) / 2)
+	size = ft_lstsize(top_b);
+	while (i <= size / 2)
 	{
-		pos[i].pos_b = j;
-		j++;
+		pos[i].pos_b = i;
 		i++;
-		top_b = top_b->next;
 	}
+	j = i - 1;
+	if (size % 2 == 0)
+		j--;
+	while (j >= 1)
+	{
+		pos[i].pos_b = -j;
+		j--;
+		i++;
+	}
+}
+
+void	set_pos_a(t_list *top_a, t_list *top_b, t_postion *pos)
+{
+	t_list *nodehead;
+	t_list *node;
+	int		midle;
+	int		i;
+	int		j;
+
+	i = 0;
 	while (top_b)
 	{
-		/* code */
-	}
-	
-	
-	while (head)
-	{
-		if (i <= ft_lstsize(top_b) / 2)
+		head = top_a;
+		node = ft_lstlast(top_a);
+		if (is_between(top_b->content, head->content, node->content))
+			pos[i].pos_a = i;
+		else if (i == 0)
 		{
-			pos[i].pos_b = j;
-			j++;
-		}
-		else if (ft_lstsize(top_b) % 2 != 0 && i - 1 == ft_lstsize(top_b) / 2)
-		{
-			j++;
-			pos[i].pos_b = -j;
-			j--;
+			j = ft_lstsize(top_b) - 1;
+			while  (head->next != node)
+			{
+				if (is_between(top_b->content, head->content, head->next->content))
+				{
+					pos[i].pos_a = get_position_by_node(head);
+					i++;
+					break ;
+				}
+				if (is_between(top_b->content, node->content, node->prev->content))
+				{
+					pos[j].pos_a = get_position_by_node(node);
+					j--;
+					break ;
+				}
+				head = head->next;
+				node = node->prev;
+			}
 		}
 		else
 		{
-			pos[i].pos_b = -j;
-			j--;
+			head = max_in_list(top_a);
+			node = max_in_list(top_b);
 		}
-		i++;
-		head = head->next;
+		top_b = top_b->next;
 	}
 }
 
 void find_position(t_list *top_a, t_list *top_b)
 {
 	t_postion *pos;
-	//t_list *no;
-	int size_b = ft_lstsize(top_b);
-	//int size_a = ft_lstsize(top_a);
-	int i = 0;
-//	int z = 1;
-	int j = size_b / 2;
-	j *= -1;
-	(void)top_a;
-	pos = malloc(sizeof(t_postion) * size_b);
-	set_pos_b(top_b, pos);
+	int i;
+
+	t_list *n = top_a;
+	top_a = n;
 	i = 0;
-	while (i < size_b)
+	pos = malloc(sizeof(t_postion) * ft_lstsize(top_b));
+	set_pos_b(top_b, pos);
+	set_pos_b(top_a, pos);
+	set_pos_a(top_a, top_b, pos);
+	i = 0;
+	printf("\n");
+	while (i < ft_lstsize(top_b))
 	{
 		printf(">> %i\n", pos[i].pos_b);
 		i++;
 	}
-
-	// while (top_b)
-	// {
-	// 	z = 1;
-	// 	// if (i < size_b / 2)
-	// 	// 	pos[i].pos_b = i;
-	// 	// else
-	// 	// {
-	// 	// 	pos[i].pos_b = j;
-	// 	// 	j++;
-	// 	// }
-	// 	// find pos_a
-	// 	no = ft_lstlast(top_a,1,ft_lstsize(top_a)); // case 1
-	// 	if (is_between(top_b->content, top_a->content,no->content))
-	// 		pos[i].pos_a = 0;
-	// 	else if (z == 1)                            // case 2
-	// 	{
-	// 		while (z <= size_a / 2)
-	// 		{
-	// 			if (is_between(top_b->content, top_a->content,top_a->next->content))
-	// 			{
-	// 				pos[i].pos_a = z;
-	// 				break ;
-	// 			}
-	// 			z++;
-	// 			top_a = top_a->next;
-	// 		}
-	// 	}
-	// 	else if (z == size_a / 2)                   // case 3
-	// 	{
-	// 		z = -z;
-	// 		while (top_a->next->content)
-	// 		{
-	// 			if (is_between(top_b->content, top_a->content,top_a->next->content))
-	// 			{
-	// 				pos[i].pos_a = z;
-	// 				break ;
-	// 			}
-	// 			z++;
-	// 			top_a = top_a->next;
-	// 		}
-	// 	}
-	// 	// end pos_a
-	// 	printf("\n");
-	// 	printf("pos_a[%i] = %i ",i,pos[i].pos_a);
-	// 	printf("pos_b[%i] = %i ",i,pos[i].pos_b);
-	// 	i++;
-	// 	top_b = top_b->next;
-	// }
 }

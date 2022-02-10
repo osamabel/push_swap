@@ -12,21 +12,19 @@
 
 #include "../push_swap_header.h"
 
-t_list	*ft_lstlast(t_list *lst, int lo, int hi)
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*current;
 	int	i;
 
 	if (lst)
 	{
 		i = 0;
-		current = lst;
-		while (current->next && i < hi - lo)
+		while (lst->next)
 		{
-			current = current->next;
+			lst = lst->next;
 			i++;
 		}
-		return (current);
+		return (lst);
 	}
 	return (0);
 }

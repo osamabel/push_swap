@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 22:52:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/09 11:56:25 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:01:21 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct s_list
 {
+	struct s_list	*prev;
 	int			content;
 	struct s_list	*next;
 }	t_list;
@@ -26,23 +27,21 @@ typedef struct s_list
 typedef struct s_position
 {
 	int			pos_a;
+	int			helper_a;
 	int			pos_b;
+	int			position;
 }	t_postion;
 
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	display(t_list *top);
-t_list	*ft_lstlast(t_list *lst, int lo, int hi);
+t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstnew(int content);
 
-void push_a(t_list **top_a,t_list **top_b);
-void push_b(t_list **top_b,t_list **top_a);
-void swap_a(t_list **top_a);
-void swap_b(t_list **top_b);
-void reverse_a(t_list **top_a);
-void reverse_b(t_list **top_b);
-void rotate_a(t_list **top_a);
-void rotate_b(t_list **top_b);
+void push(t_list **top_1,t_list **top_2);
+void swap(t_list **top);
+void reverse(t_list **top);
+void rotate(t_list **top);
 
 int	ft_atoi(const char *str);
 int	ft_ispace(char c);

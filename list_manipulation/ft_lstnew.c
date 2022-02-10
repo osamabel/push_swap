@@ -21,5 +21,6 @@ t_list	*ft_lstnew(int content)
 		return (0);
 	node->content = content;
 	node->next = NULL;
+	node->prev = NULL;
 	return (node);
 }
