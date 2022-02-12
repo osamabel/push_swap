@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:01:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/10 14:26:22 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/12 20:30:23 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,10 @@ void swap(t_list **top)
         (*top)->content = (*top)->next->content;
         (*top)->next->content = swap;
     }
+}
+
+void    ss(t_list **top_a, t_list **top_b)
+{
+    swap(top_a);
+    swap(top_b);
 }

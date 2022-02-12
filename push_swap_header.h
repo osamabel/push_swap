@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 22:52:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/10 16:01:21 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/12 20:30:30 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 typedef struct s_list
 {
 	struct s_list	*prev;
-	int			content;
+	int				content;
+	int				keep;
 	struct s_list	*next;
 }	t_list;
 
 typedef struct s_position
 {
 	int			pos_a;
-	int			helper_a;
 	int			pos_b;
 	int			position;
 }	t_postion;
@@ -42,6 +42,12 @@ void push(t_list **top_1,t_list **top_2);
 void swap(t_list **top);
 void reverse(t_list **top);
 void rotate(t_list **top);
+void    rrr(t_list **top_a, t_list **top_b);
+void    rr(t_list **top_a, t_list **top_b);
+void    ss(t_list **top_a, t_list **top_b);
+
+
+
 
 int	ft_atoi(const char *str);
 int	ft_ispace(char c);
@@ -60,6 +66,7 @@ int existe(int c, int list[]);
 void separet_lis(t_list **top_a, t_list **top_b, int *list);
 int is_between(int x, int a, int b);
 void find_position(t_list *top_a, t_list *top_b);
-
-
+t_list	*get_max_list(t_list *top);
+int	get_pos_by_node(t_list *top, t_list *node);
+int	min_of_arr(int *tab, int size);
 #endif

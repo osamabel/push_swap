@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:09:46 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/10 14:24:48 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/12 20:27:58 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,10 @@ void reverse(t_list **top)
         (*top)->prev = temp;
         *top = (*top)->prev;
     }
+}
+
+void    rrr(t_list **top_a, t_list **top_b)
+{
+    reverse(top_a);
+    reverse(top_b);
 }
