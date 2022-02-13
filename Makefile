@@ -15,6 +15,7 @@ SRCS = list_manipulation/push.c\
 	list_manipulation/largest_increasing_sequence.c\
 	list_manipulation/separate_ab.c\
 	list_manipulation/position_ab.c\
+	list_manipulation/order_list_by_min.c\
 	utils/ft_atoi.c\
 	utils/util.c\
 
@@ -23,14 +24,13 @@ OBJS = $(SRCS:.c=.o)
 all:	$(NAME) compile
 
 $(NAME): $(OBJS)
-	$(AR) $(NAME) $(OBJS)
+	@$(AR) $(NAME) $(OBJS)
 
 .c.o:
-	$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 compile :
 	@$(CC) $(CFLAGS) main.c $(NAME) -o push_swap
-	@./push_swap 331 142 590 737 310 150 579 834 504 255 589 20 480 334 571 132 660
 
 clean:
 	$(RM) $(OBJS)

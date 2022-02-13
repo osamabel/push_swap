@@ -6,13 +6,13 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:09:46 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/12 20:27:58 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/13 14:43:48 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-void reverse(t_list **top)
+int reverse(t_list **top)
 {
     t_list *temp;
 
@@ -25,10 +25,12 @@ void reverse(t_list **top)
         (*top)->prev = temp;
         *top = (*top)->prev;
     }
+    return 1;
 }
 
-void    rrr(t_list **top_a, t_list **top_b)
+int    rrr(t_list **top_a, t_list **top_b)
 {
     reverse(top_a);
     reverse(top_b);
+    return 1;
 }

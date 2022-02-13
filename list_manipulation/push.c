@@ -6,13 +6,13 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 22:53:16 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/12 20:29:34 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/13 14:43:33 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-void push(t_list **top_1,t_list **top_2)
+int push(t_list **top_1,t_list **top_2)
 {
     t_list *node;
 
@@ -31,4 +31,5 @@ void push(t_list **top_1,t_list **top_2)
             *top_1 = (*top_1)->prev;
         }
     }
+    return 1;
 }

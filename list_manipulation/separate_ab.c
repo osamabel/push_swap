@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:10:13 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/12 19:18:38 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/13 16:00:35 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,11 @@ void separet_lis(t_list **top_a, t_list **top_b, int *list)
 	while (check_keeped_number(*top_a))
 	{
 		while ((*top_a)->keep)
+		{
+			//printf("rb\n");
 			rotate(top_a);
-		push(top_b, top_a);
+		}
+		push(top_b, top_a);//printf("pb\n");
 		i++;
 	}
 }

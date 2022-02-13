@@ -6,16 +6,11 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:31:30 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/12 20:34:00 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/13 16:00:56 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
-
-int is_between(int x, int a, int b)
-{
-	return ((x > a && x < b) || (x < a && x > b));
-}
 
 void	set_pos_b(t_list *top_b, t_postion *pos)
 {
@@ -33,6 +28,42 @@ void	set_pos_b(t_list *top_b, t_postion *pos)
 		i++;
 	}
 }
+void apply_sort(t_list **top_a, t_list **top_b, t_postion *pos, int min)
+{
+	while (pos[min].pos_a > 0 && pos[min].pos_b > 0)
+	{
+		rr(top_a, top_b);  //printf("rr\n");
+		pos[min].pos_a--;
+		pos[min].pos_b--;
+	}
+	while (pos[min].pos_a < 0 && pos[min].pos_b < 0)
+	{
+		rrr(top_a, top_b); ///printf("rrr\n");
+		pos[min].pos_a++;
+		pos[min].pos_b++;
+	}
+	while (pos[min].pos_a > 0 && rotate(top_a))
+	{
+		//printf("ra\n");
+		pos[min].pos_a--;
+	}
+	while (pos[min].pos_b > 0 && rotate(top_b))
+	{
+		//printf("rb\n");
+		pos[min].pos_b--;
+	}
+	while (pos[min].pos_a < 0 && reverse(top_a))
+	{
+		//printf("rra\n");
+		pos[min].pos_a++;
+	}
+	while (pos[min].pos_b < 0 && reverse(top_a))
+	{
+		//printf("rrb\n");
+		pos[min].pos_b++;
+	}
+	push(top_a, top_b); //printf("pa\n");
+}
 
 int ft_abs(int x)
 {
@@ -41,52 +72,109 @@ int ft_abs(int x)
 	return x;
 }
 
+int	max_of_two_number(int a, int b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
+int case_1(t_list *top_a, t_list *top_b, t_postion *pos, int *tab)
+{
+	t_list *node;
+
+	node = ft_lstlast(top_a);
+	if (top_b->content < top_a->content && top_b->content > node->content)
+	{
+		pos[pos->index].pos_a = 0;
+		if (pos[pos->index].pos_b > 0)
+			tab[pos->index] = pos[pos->index].pos_b;
+		else
+			tab[pos->index] = ft_abs(pos[pos->index].pos_b);
+		return (1);
+	}
+	return (0);
+}
+
+int case_2(t_list *top_a, t_list *top_b, t_postion *pos, int *tab)
+{
+	t_list *node;
+	int		j;
+	int		x;
+	int		y;
+
+	node = top_a;
+	j = 0;
+	while (node->next)
+	{
+		x = node->content;
+		y = node->next->content;
+		if (top_b->content > x && y > top_b->content)
+		{
+			if (j <= ft_lstsize(top_a) / 2)
+				pos[pos->index].pos_a = j + 1;
+			else
+				pos[pos->index].pos_a = j + 1 - ft_lstsize(top_a);
+			x = pos[pos->index].pos_a;
+			y = pos[pos->index].pos_b;
+			if (x >= 0 && y >= 0)
+				tab[pos->index] = max_of_two_number(x, y);
+			else if (x <= 0 && y <= 0)
+				tab[pos->index] = max_of_two_number(ft_abs(x), ft_abs(y));
+			else
+				tab[pos->index] = ft_abs(x) + ft_abs(y);
+			break ;
+		}
+		j++;
+		node = node->next;
+	}
+	if (node->next)
+		return 1;
+	return 0;
+}
+
+void	case_3(t_list *top_a, t_postion *pos, int *tab)
+{
+	t_list *node;
+	int		j;
+	int		x;
+	int		y;
+
+	node = get_max_list(top_a);
+	j = get_pos_by_node(top_a, node);
+	if (j <= ft_lstsize(top_a) / 2)
+		pos[pos->index].pos_a = j + 1;
+	else
+		pos[pos->index].pos_a = j + 1 - ft_lstsize(top_a);
+	x = pos[pos->index].pos_a;
+	y = pos[pos->index].pos_b;
+	if (x >= 0 && y >= 0)
+		tab[pos->index] = max_of_two_number(x, y);
+	else if (x <= 0 && y <= 0)
+		tab[pos->index] = max_of_two_number(ft_abs(x), ft_abs(y));
+	else
+		tab[pos->index] = ft_abs(x) + ft_abs(y);
+}
+
 void	set_pos_a(t_list *top_a, t_list *top_b, t_postion *pos ,int *tab)
 {
-	t_list	*node;
-	int		i;
-	int		j;
-
-	i = 0;
+	pos->index = 0;
 	while (top_b)
 	{
-		j = 0;
-		// node = ft_lstlast(top_a);
-		// if (is_between(top_b->content, top_a->content, node->content))
-		// {
-		// 	pos[i].pos_a = 0;
-		// 	//i++;
-		// 	//top_b = top_b->next;
-		// }
-		node = top_a;
-		while (node->next)
+		if (case_1(top_a, top_b,pos, tab))
 		{
-			if (is_between(top_b->content, node->content, node->next->content))
-			{
-				if (j <= ft_lstsize(top_a) / 2)
-					pos[i].pos_a = j + 1;
-				else
-					pos[i].pos_a = j - ft_lstsize(top_a);
-				tab[i] = ft_abs(pos[i].pos_a) + ft_abs(pos[i].pos_b);
-				break ;
-			}
-			j++;
-			node = node->next;
-		}
-		if (node->next)
-		{
-			i++;
+			pos->index++;
 			top_b = top_b->next;
 			continue;
 		}
-		node = get_max_list(top_a);
-		j = get_pos_by_node(top_a, node);
-		if (j <= ft_lstsize(top_a) / 2)
-			pos[i].pos_a = j + 1;
-		else
-			pos[i].pos_a = j - ft_lstsize(top_a);
-		tab[i] = ft_abs(pos[i].pos_a) + ft_abs(pos[i].pos_b);
-		i++;
+		if (case_2(top_a, top_b,pos, tab))
+		{
+			pos->index++;
+			top_b = top_b->next;
+			continue;
+		}
+		case_3(top_a,pos, tab);
+		pos->index++;
 		top_b = top_b->next;
 	}
 }
@@ -97,47 +185,23 @@ void find_position(t_list **top_a, t_list **top_b)
 	int	*tab;
 	int i;
 
-	i = 0;
 	pos = malloc(sizeof(t_postion) * ft_lstsize(*top_b));
 	tab = malloc(sizeof(t_postion) * ft_lstsize(*top_b));
 	set_pos_b(*top_b, pos);
 	set_pos_a(*top_a, *top_b, pos, tab);
 	i = 0;
-	printf("\n");
-	tab[0]=10;
+	printf("A ->");
+	display(*top_a);
+	printf("B ->");
+	display(*top_b);
 	while (i < ft_lstsize(*top_b))
 	{
-		printf("pos: [%i , %i]- %i\n",pos[i].pos_a, pos[i].pos_b,tab[i]);
+		printf("[%i, %i] -> %i\n", pos[i].pos_a, pos[i].pos_b, tab[i]);
 		i++;
 	}
-	printf("[]- %i\n",min_of_arr(tab, ft_lstsize(*top_b)));
-	aply_sort(pos, min_of_arr(top_a, top_b,tab, ft_lstsize(top_b)));
+	
+	i = min_of_arr(tab, ft_lstsize(*top_b));
+	apply_sort(top_a,top_b,pos, i);
 	free(pos);
-}
-
-void aply_sort(t_list **top_a, t_list **top_b, t_postion *pos, int min)
-{
-	if (pos[min].pos_a >= 0 && pos[min].pos_b >= 0)
-	{
-		while (pos[min].pos_a && pos[min].pos_b)
-		{
-			rr(top_a, top_b);
-			pos[min].pos_a--;
-			pos[min].pos_b--;
-		}
-		while (pos[min].pos_a)
-		{
-			rotate(top_a);
-			pos[min].pos_a--;
-		}
-		while (pos[min].pos_b)
-		{
-			rotate(top_b);
-			pos[min].pos_b--;
-		}
-	}
-	if (pos[min].pos_a <= 0 && pos[min].pos_b <= 0)
-	{
-		
-	}
+	free(tab);
 }
