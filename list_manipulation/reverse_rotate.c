@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 23:09:46 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/13 14:43:48 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/15 11:46:42 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,20 @@ int    rrr(t_list **top_a, t_list **top_b)
 {
     reverse(top_a);
     reverse(top_b);
+	write(1, "rrr\n", 4);
     return 1;
+}
+
+int	rra(t_list **top_a)
+{
+	reverse(top_a);
+	write(1, "rra\n", 4);
+	return 1;
+}
+
+int	rrb(t_list **top_b)
+{
+	reverse(top_b);
+	write(1, "rrb\n", 4);
+	return 1;
 }

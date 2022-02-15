@@ -6,12 +6,27 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:09:05 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/14 16:34:32 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/15 13:56:58 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_header.h"
 
+void	push_swap(t_list **top_a, t_list **top_b)
+{
+	int	*lis;
+
+	lis = NULL;
+	lis = largest_increasing_sequence(*top_a, lis);
+	separet_lis(top_a, top_b, lis);
+	free(lis);
+	while (*top_b)
+		find_position(top_a, top_b);
+	order_list_by_min(top_a);
+	// display(*top_a);
+}
+
+// int main(void)
 int main(int argc, char *argv[])
 {
 	t_list *top_a;
@@ -21,22 +36,16 @@ int main(int argc, char *argv[])
 	i = 1;
     top_a = NULL;
     top_b = NULL;
-	while (i < argc)
-	{
-		ft_lstadd_back(&top_a,ft_lstnew(ft_atoi(argv[i])));
-		i++;
-	}
-	// printf("\n");
-	order_list_by_min(&top_a);
-	// display(top_a);
-	int *list = largest_increasing_sequence(top_a);
-	separet_lis(&top_a, &top_b, list);
-	// display(top_a);
-	free(list);
-	while (top_b)
-		find_position(&top_a, &top_b);
-	order_list_by_min(&top_a);
-	// display(top_a);
+	// while (i < argc)
+	// {
+	// 	ft_lstadd_back(&top_a,ft_lstnew(ft_atoi(argv[i])));
+	// 	i++;
+	// }
+	// push_swap(&top_a, &top_b);
+	if (parsing_argument(argc, argv))
+		write(1, "Good\n", 5);
+	else
+		write(1, "Error\n", 6);
 	return 0;
 }
 
@@ -65,5 +74,4 @@ int main(int argc, char *argv[])
 	// 	ft_lstadd_back(&top_a,ft_lstnew(17));
 	// 	ft_lstadd_back(&top_a,ft_lstnew(74));
 	// 	ft_lstadd_back(&top_a,ft_lstnew(10));
-
 	// }

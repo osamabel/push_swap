@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 15:31:30 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/14 16:32:34 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/15 10:45:22 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,37 +32,37 @@ void apply_sort(t_list **top_a, t_list **top_b, t_postion *pos, int min)
 {
 	while (pos[min].pos_a > 0 && pos[min].pos_b > 0)
 	{
-		rr(top_a, top_b);  printf("rr\n");
+		rr(top_a, top_b);
 		pos[min].pos_a--;
 		pos[min].pos_b--;
 	}
 	while (pos[min].pos_a < 0 && pos[min].pos_b < 0)
 	{
-		rrr(top_a, top_b); printf("rrr\n");
+		rrr(top_a, top_b);
 		pos[min].pos_a++;
 		pos[min].pos_b++;
 	}
 	while (pos[min].pos_a > 0)
 	{
-		rotate(top_a);printf("ra\n");
+		ra(top_a);
 		pos[min].pos_a--;
 	}
 	while (pos[min].pos_b > 0)
 	{
-		rotate(top_b);printf("rb\n");
+		rb(top_b);
 		pos[min].pos_b--;
 	}
 	while (pos[min].pos_a < 0)
 	{
-		reverse(top_a);printf("rra\n");
+		rra(top_a);
 		pos[min].pos_a++;
 	}
 	while (pos[min].pos_b < 0)
 	{
-		reverse(top_b);printf("rrb\n");
+		rrb(top_b);
 		pos[min].pos_b++;
 	}
-	push(top_a, top_b); printf("pa\n");
+	pa(top_a, top_b);
 }
 
 int ft_abs(int x)
@@ -179,7 +179,7 @@ void	set_pos_a(t_list *top_a, t_list *top_b, t_postion *pos ,int *tab)
 	}
 }
 
-void find_position(t_list **top_a, t_list **top_b)
+void	find_position(t_list **top_a, t_list **top_b)
 {
 	t_postion *pos;
 	int	*tab;
@@ -190,20 +190,6 @@ void find_position(t_list **top_a, t_list **top_b)
 	set_pos_b(*top_b, pos);
 	set_pos_a(*top_a, *top_b, pos, tab);
 	i = 0;
-	// printf("A ->");
-	// display(*top_a);
-	// printf("B ->");
-	// display(*top_b);
-	// printf("\n");
-	// printf("> min : %i \n",tab[min_of_arr(tab, ft_lstsize(*top_b))]);
-	// printf("\n");
-	// while (i < ft_lstsize(*top_b))
-	// {
-	// 	printf("[%i, %i] -> %i\n", pos[i].pos_a, pos[i].pos_b, tab[i]);
-	// 	i++;
-	// }
-	// printf("\n");
-
 	i = min_of_arr(tab, ft_lstsize(*top_b));
 	apply_sort(top_a,top_b,pos, i);
 	free(pos);

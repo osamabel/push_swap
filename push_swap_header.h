@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 22:52:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/13 14:58:35 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:12:41 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 typedef struct s_list
 {
@@ -45,17 +46,28 @@ int rotate(t_list **top);
 int    rrr(t_list **top_a, t_list **top_b);
 int    rr(t_list **top_a, t_list **top_b);
 int    ss(t_list **top_a, t_list **top_b);
+int	pa(t_list **top_a, t_list **top_b);
+int	pb(t_list **top_a, t_list **top_b);
+int	rra(t_list **top_a);
+int	rrb(t_list **top_b);
+int ra(t_list **top_a);
+int rb(t_list **top_b);
+int	pa(t_list **top_a, t_list **top_b);
+int	pb(t_list **top_a, t_list **top_b);
+int    sa(t_list **top_a);
+int    sb(t_list **top_b);
 
-
-
-
+char	**ft_split(char const *s, char c);
+size_t	ft_strlen(const char	*c);
+int	wcount(char const *s, char c);
+int	parsing_argument(int argc, char	*argv[]);
 int	ft_atoi(const char *str);
 int	ft_ispace(char c);
 int	testlong(unsigned long long nb, int sign);
 int all_done(t_list *top);
-
+t_list	*get_min_list(t_list *top);
 void	order_list_by_min(t_list **top);
-int *largest_increasing_sequence(t_list *top);
+int *largest_increasing_sequence(t_list *top, int *list);
 t_list *get_node_by_value(t_list *top, int position);
 void	ft_swap_nodes(t_list **top_a, t_list **top_b, int i, int j);
 t_list	*get_mid_point(t_list *top,int lo, int hi);
@@ -65,9 +77,9 @@ int	max_of_arr(int *list ,int size,int last_max);
 int existe(int c, int list[]);
 void separet_lis(t_list **top_a, t_list **top_b, int *list);
 int is_between(int x, int a, int b);
-void find_position(t_list **top_a, t_list **top_b);
+void	find_position(t_list **top_a, t_list **top_b);
 t_list	*get_max_list(t_list *top);
 int	get_pos_by_node(t_list *top, t_list *node);
 int	min_of_arr(int *tab, int size);
-
+void	free_list(t_list **top);
 #endif

@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 14:19:25 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/12 20:00:43 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/15 10:14:36 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ int	min_of_arr(int *tab, int size)
 
 t_list	*get_max_list(t_list *top)
 {
-	int	max;
 	t_list *head;
+	int		max;
 
 	max = top->content;
 	head = top;
@@ -120,6 +120,26 @@ t_list	*get_max_list(t_list *top)
 		if (max < top->content)
 		{
 			max = top->content;
+			head = top;
+		}
+		top = top->next;
+	}
+	return (head);
+}
+
+t_list	*get_min_list(t_list *top)
+{
+	t_list *head;
+	int		min;
+
+	min = top->content;
+	head = top;
+	top = top->next;
+	while (top)
+	{
+		if (min > top->content)
+		{
+			min = top->content;
 			head = top;
 		}
 		top = top->next;
@@ -138,4 +158,19 @@ int	get_pos_by_node(t_list *top, t_list *node)
 		top = top->next;
 	}
 	return (index);
+}
+void	free_list(t_list **top)
+{
+	t_list *node;
+
+	if (top)
+	{
+		while (*top)
+		{
+			node = *top;
+			*top = (*top)->next;
+			free(node);
+		}
+	}
+	*top = NULL;
 }
