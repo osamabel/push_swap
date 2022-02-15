@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 14:51:25 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/13 16:00:31 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/14 16:31:56 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	order_list_by_min(t_list **top)
 		times = pos;
 	else
 		times = pos - ft_lstsize(*top);
-	while (times > 0 && rotate(top))
+	while (times > 0)
 	{
-		//printf("ra\n");
+		rotate(top);printf("ra\n");
 		times--;
 	}
-	while (times < 0 && reverse(top))
+	while (times < 0)
 	{
-		//printf("rra\n");
+		reverse(top);printf("rra\n");
 		times++;
 	}
 }
