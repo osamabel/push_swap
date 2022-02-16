@@ -18,7 +18,7 @@ SRCS = list_manipulation/push.c\
 	list_manipulation/order_list_by_min.c\
 	list_manipulation/parsing.c\
 	list_manipulation/split.c\
-	utils/ft_atoi.c\
+	utils/ft_atol.c\
 	utils/util.c\
 
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 22:52:39 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/15 16:12:41 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/16 11:44:43 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ int	pa(t_list **top_a, t_list **top_b);
 int	pb(t_list **top_a, t_list **top_b);
 int    sa(t_list **top_a);
 int    sb(t_list **top_b);
-
+char	*ft_strdup(const char *s1);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char	*c);
 int	wcount(char const *s, char c);
-int	parsing_argument(int argc, char	*argv[]);
-int	ft_atoi(const char *str);
+int	parsing_argument(int argc, char	*argv[], t_list **top_a);
+long	ft_atol(const char *str);
 int	ft_ispace(char c);
 int	testlong(unsigned long long nb, int sign);
 int all_done(t_list *top);
@@ -82,4 +82,7 @@ t_list	*get_max_list(t_list *top);
 int	get_pos_by_node(t_list *top, t_list *node);
 int	min_of_arr(int *tab, int size);
 void	free_list(t_list **top);
+int	free_splited(char **result, int n);
+char	*ft_strtrim(char const *s1, char const *set);
+int	ft_isdigit(int c);
 #endif

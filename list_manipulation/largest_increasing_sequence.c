@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:46:49 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/15 10:42:06 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:39:14 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,29 @@ t_list	*min_on_top(t_list *top)
 	head = NULL;
 	node = get_min_list(top);
 	temp = node;
-	while (top != node)
+	if (node == top)
 	{
-		if (temp)
-		{
-			ft_lstadd_back(&head,ft_lstnew(temp->content));
-			temp = temp->next;
-		}
-		else
+		while (top)
 		{
 			ft_lstadd_back(&head,ft_lstnew(top->content));
 			top = top->next;
+		}
+		return (head);
+	}
+	else
+	{
+		while (top != node)
+		{
+			if (temp)
+			{
+				ft_lstadd_back(&head,ft_lstnew(temp->content));
+				temp = temp->next;
+			}
+			else
+			{
+				ft_lstadd_back(&head,ft_lstnew(top->content));
+				top = top->next;
+			}
 		}
 	}
 	return (head);
@@ -83,23 +95,23 @@ t_list	*min_on_top(t_list *top)
 
 
 
-int *largest_increasing_sequence(t_list *top, int *lis)
+int *largest_increasing_sequence(t_list *top_a, int *lis)
 {
 	t_list *head;
 	int	*list;
 	int i;
 	int j;
 
-	head = min_on_top(top);
+	head = min_on_top(top_a);
 	list = set_list_tab(head);
-	i = max_of_arr(list, ft_lstsize(head),ft_lstsize(head));
+	i = max_of_arr(list, ft_lstsize(head),ft_lstsize(head) + 1);
 	lis = malloc(sizeof(int) * (list[i] + 1));
 	lis[0] = list[i];
 	j = list[i];
 	while (j)
 	{
-		top = get_node_by_value(head, i);
-		lis[list[i]] = top->content;
+		top_a = get_node_by_value(head, i);
+		lis[list[i]] = top_a->content;
 		i = max_of_arr(list, i,list[i]);
 		j--;
 	}

@@ -12,17 +12,6 @@
 
 #include "../push_swap_header.h"
 
-int	testlong(unsigned long long nb, int sign)
-{
-	unsigned long long	ll;
-
-	ll = 9223372036854775807;
-	if (nb > (ll + 1) && sign == -1)
-		return (0);
-	if (nb > ll && sign == 1)
-		return (-1);
-	return (1);
-}
 
 int	ft_ispace(char c)
 {
@@ -30,17 +19,16 @@ int	ft_ispace(char c)
 		|| c == '\f');
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int					i;
-	int					minus;
-	unsigned long long	result;
-	int					is_long;
+	int		i;
+	int		minus;
+	long	result;
 
 	minus = 1;
 	result = 0;
 	i = 0;
-	while (str[i] && ft_ispace(str[i]))
+	if (str[i] && ft_ispace(str[i]))
 		i++;
 	if (str[i] && (str[i] == '-' || str[i] == '+'))
 	{
@@ -48,11 +36,6 @@ int	ft_atoi(const char *str)
 			minus = -minus;
 	}
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
-	{
 		result = result * 10 + str[i++] - '0';
-		is_long = testlong(result, minus);
-		if (is_long != 1)
-			return (is_long);
-	}
 	return (result * minus);
 }
