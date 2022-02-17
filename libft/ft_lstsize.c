@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelkhad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 23:04:45 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/14 00:15:13 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 17:09:02 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:09:02 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-t_list	*ft_lstnew(int content)
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*node;
+	int		counter;
 
-	node = malloc(sizeof(t_list));
-	if (!node)
+	counter = 0;
+	if (!lst)
 		return (0);
-	node->content = content;
-	node->next = NULL;
-	node->prev = NULL;
-	return (node);
+	while (lst)
+	{
+		counter++;
+		lst = lst->next;
+	}
+	return (counter);
 }

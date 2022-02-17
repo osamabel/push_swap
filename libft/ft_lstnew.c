@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelkhad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 01:23:07 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/15 09:53:44 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 17:08:42 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:08:42 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_list	*ft_lstnew(int content)
 {
-	t_list	*head;
+	t_list	*node;
 
-	if (lst && new)
-	{
-		if (!*lst)
-			*lst = new;
-		else
-		{
-			head = *lst;
-			while (head->next)
-				head = head->next;
-			head->next = new;
-			new->prev = head;
-		}
-	}
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (0);
+	node->content = content;
+	node->next = NULL;
+	node->prev = NULL;
+	return (node);
 }

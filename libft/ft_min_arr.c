@@ -1,48 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_min_arr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 23:01:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/17 12:55:46 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 16:53:34 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:10:16 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-int	swap(t_list **top)
+int	min_of_arr(int *tab, int size)
 {
-	int	swap;
+	int	i;
+	int	j;
+	int	min;
 
-	if (ft_lstsize(*top) > 1)
+	i = 1;
+	j = 0;
+	min = tab[0];
+	while (i < size)
 	{
-		swap = (*top)->content;
-		(*top)->content = (*top)->next->content;
-		(*top)->next->content = swap;
+		if (min > tab[i])
+		{
+			min = tab[i];
+			j = i;
+		}
+		i++;
 	}
-	return (1);
-}
-
-int	ss(t_list **top_a, t_list **top_b)
-{
-	swap(top_a);
-	swap(top_b);
-	write(1, "ss\n", 3);
-	return (1);
-}
-
-int	sa(t_list **top_a)
-{
-	swap(top_a);
-	write(1, "sa\n", 3);
-	return (1);
-}
-
-int	sb(t_list **top_b)
-{
-	swap(top_b);
-	write(1, "sb\n", 3);
-	return (1);
+	return (j);
 }

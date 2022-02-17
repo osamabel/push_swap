@@ -1,48 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_get_max_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 23:01:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/17 12:55:46 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 16:50:22 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:05:06 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-int	swap(t_list **top)
+t_list	*get_max_list(t_list *top)
 {
-	int	swap;
+	t_list	*head;
+	int		max;
 
-	if (ft_lstsize(*top) > 1)
+	max = top->content;
+	head = top;
+	top = top->next;
+	while (top)
 	{
-		swap = (*top)->content;
-		(*top)->content = (*top)->next->content;
-		(*top)->next->content = swap;
+		if (max < top->content)
+		{
+			max = top->content;
+			head = top;
+		}
+		top = top->next;
 	}
-	return (1);
-}
-
-int	ss(t_list **top_a, t_list **top_b)
-{
-	swap(top_a);
-	swap(top_b);
-	write(1, "ss\n", 3);
-	return (1);
-}
-
-int	sa(t_list **top_a)
-{
-	swap(top_a);
-	write(1, "sa\n", 3);
-	return (1);
-}
-
-int	sb(t_list **top_b)
-{
-	swap(top_b);
-	write(1, "sb\n", 3);
-	return (1);
+	return (head);
 }

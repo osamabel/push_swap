@@ -1,48 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 23:01:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/17 12:55:46 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 16:43:52 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:11:27 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-int	swap(t_list **top)
+size_t	ft_strlcpy(char	*dst, const char *src, size_t dstsize)
 {
-	int	swap;
+	size_t	i;
 
-	if (ft_lstsize(*top) > 1)
+	i = 0;
+	if (dstsize != 0)
 	{
-		swap = (*top)->content;
-		(*top)->content = (*top)->next->content;
-		(*top)->next->content = swap;
+		while (i < dstsize - 1 && src[i])
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	return (1);
-}
-
-int	ss(t_list **top_a, t_list **top_b)
-{
-	swap(top_a);
-	swap(top_b);
-	write(1, "ss\n", 3);
-	return (1);
-}
-
-int	sa(t_list **top_a)
-{
-	swap(top_a);
-	write(1, "sa\n", 3);
-	return (1);
-}
-
-int	sb(t_list **top_b)
-{
-	swap(top_b);
-	write(1, "sb\n", 3);
-	return (1);
+	return (ft_strlen(src));
 }

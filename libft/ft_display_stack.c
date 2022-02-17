@@ -1,48 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_display_stack.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 23:01:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/17 12:55:46 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 16:51:44 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:03:57 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-int	swap(t_list **top)
+void	display(t_list *top)
 {
-	int	swap;
-
-	if (ft_lstsize(*top) > 1)
+	if (top)
 	{
-		swap = (*top)->content;
-		(*top)->content = (*top)->next->content;
-		(*top)->next->content = swap;
+		while (top)
+		{
+			ft_printf ("%i ", top->content);
+			top = top->next;
+		}
 	}
-	return (1);
-}
-
-int	ss(t_list **top_a, t_list **top_b)
-{
-	swap(top_a);
-	swap(top_b);
-	write(1, "ss\n", 3);
-	return (1);
-}
-
-int	sa(t_list **top_a)
-{
-	swap(top_a);
-	write(1, "sa\n", 3);
-	return (1);
-}
-
-int	sb(t_list **top_b)
-{
-	swap(top_b);
-	write(1, "sb\n", 3);
-	return (1);
+	else
+		ft_printf ("N U L L\n");
+	ft_printf ("\n");
 }

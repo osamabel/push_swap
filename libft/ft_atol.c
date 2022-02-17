@@ -12,7 +12,6 @@
 
 #include "../push_swap_header.h"
 
-
 int	ft_ispace(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\r' || c == '\n' || c == '\v'

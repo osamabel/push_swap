@@ -1,48 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_get_node.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 23:01:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/17 12:55:46 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 16:52:44 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:06:14 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-int	swap(t_list **top)
+t_list	*get_node_by_value(t_list *top, int position)
 {
-	int	swap;
+	int	i;
 
-	if (ft_lstsize(*top) > 1)
+	i = 0;
+	while (top && i < position)
 	{
-		swap = (*top)->content;
-		(*top)->content = (*top)->next->content;
-		(*top)->next->content = swap;
+		top = top->next;
+		i++;
 	}
-	return (1);
-}
-
-int	ss(t_list **top_a, t_list **top_b)
-{
-	swap(top_a);
-	swap(top_b);
-	write(1, "ss\n", 3);
-	return (1);
-}
-
-int	sa(t_list **top_a)
-{
-	swap(top_a);
-	write(1, "sa\n", 3);
-	return (1);
-}
-
-int	sb(t_list **top_b)
-{
-	swap(top_b);
-	write(1, "sb\n", 3);
-	return (1);
+	if (top)
+		return (top);
+	return (0);
 }

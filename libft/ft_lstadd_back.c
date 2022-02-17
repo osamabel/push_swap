@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelkhad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 00:18:21 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/15 09:52:26 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 17:07:43 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:07:43 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
+	t_list	*head;
 
-	if (lst)
+	if (lst && new)
 	{
-		i = 0;
-		while (lst->next)
+		if (!*lst)
+			*lst = new;
+		else
 		{
-			lst = lst->next;
-			i++;
+			head = *lst;
+			while (head->next)
+				head = head->next;
+			head->next = new;
+			new->prev = head;
 		}
-		return (lst);
 	}
-	return (0);
 }

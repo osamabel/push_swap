@@ -1,48 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 23:01:15 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/17 12:55:46 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 16:44:34 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:11:55 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-int	swap(t_list **top)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	swap;
+	char	*p;
 
-	if (ft_lstsize(*top) > 1)
+	if (!s)
+		return (0);
+	if (start >= ft_strlen(s))
 	{
-		swap = (*top)->content;
-		(*top)->content = (*top)->next->content;
-		(*top)->next->content = swap;
+		p = malloc(sizeof(char));
+		if (!p)
+			return (0);
+		*p = 0;
+		return (p);
 	}
-	return (1);
-}
-
-int	ss(t_list **top_a, t_list **top_b)
-{
-	swap(top_a);
-	swap(top_b);
-	write(1, "ss\n", 3);
-	return (1);
-}
-
-int	sa(t_list **top_a)
-{
-	swap(top_a);
-	write(1, "sa\n", 3);
-	return (1);
-}
-
-int	sb(t_list **top_b)
-{
-	swap(top_b);
-	write(1, "sb\n", 3);
-	return (1);
+	if (start + len > ft_strlen(s))
+		len = ft_strlen(s) - start;
+	p = malloc((len + 1) * sizeof(char));
+	if (!p)
+		return (0);
+	ft_strlcpy(p, s + start, len + 1);
+	p[len + 1] = '\0';
+	return (p);
 }

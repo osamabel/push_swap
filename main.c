@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:09:05 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/16 16:38:45 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:22:48 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ void	push_swap(t_list **top_a, t_list **top_b)
 	order_list_by_min(top_a);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_list *top_a;
-    t_list *top_b;
+	t_list	*top_a;
+	t_list	*top_b;
 
-    top_a = NULL;
-    top_b = NULL;
+	top_a = NULL;
+	top_b = NULL;
 	if (parsing_argument(argc, argv, &top_a))
 		push_swap(&top_a, &top_b);
 	else
 		write(1, "Error\n", 6);
-	// display(top_a);
-	return 0;
+	display(top_a);
+	return (0);
 }

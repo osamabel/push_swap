@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 14:51:25 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/15 10:34:29 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:37:12 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	order_list_by_min(t_list **top)
 {
-	t_list *node;
+	t_list	*node;
 	int		pos;
 	int		times;
 

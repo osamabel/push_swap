@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obelkhad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/14 00:07:20 by obelkhad          #+#    #+#             */
-/*   Updated: 2021/11/14 00:28:54 by obelkhad         ###   ########.fr       */
+/*   Created: 2022/02/16 17:08:29 by obelkhad          #+#    #+#             */
+/*   Updated: 2022/02/16 17:08:29 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_header.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int		counter;
+	int	i;
 
-	counter = 0;
-	if (!lst)
-		return (0);
-	while (lst)
+	if (lst)
 	{
-		counter++;
-		lst = lst->next;
+		i = 0;
+		while (lst->next)
+		{
+			lst = lst->next;
+			i++;
+		}
+		return (lst);
 	}
-	return (counter);
+	return (0);
 }
