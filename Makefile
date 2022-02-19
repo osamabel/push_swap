@@ -2,7 +2,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 AR = ar rcs
 RM = rm -f
-NAME = lib.a
+NAME = push_swap
+
 
 SRCS =  list_manipulation/best_case.c\
 		list_manipulation/largest_increasing_sequence.c\
@@ -14,50 +15,33 @@ SRCS =  list_manipulation/best_case.c\
 		list_manipulation/rotate.c\
 		list_manipulation/separate_ab.c\
 		list_manipulation/sorting.c\
-		list_manipulation/swap.c\
-		libft/ft_abs.c\
-		libft/ft_atol.c\
-		libft/ft_display_stack.c\
-		libft/ft_free_list.c\
-		libft/ft_get_max_list.c\
-		libft/ft_get_min_list.c\
-		libft/ft_get_node_position.c\
-		libft/ft_get_node.c\
-		libft/ft_isdigit.c\
-		libft/ft_lstadd_back.c\
-		libft/ft_lstlast.c\
-		libft/ft_lstnew.c\
-		libft/ft_lstsize.c\
-		libft/ft_max_arr.c\
-		libft/ft_min_arr.c\
-		libft/ft_print_func.c\
-		libft/ft_printf.c\
-		libft/ft_split.c\
-		libft/ft_strdup.c\
-		libft/ft_strlcpy.c\
-		libft/ft_strlen.c\
-		libft/ft_strtrim.c\
-		libft/ft_maz_two_number.c \
-		libft/ft_substr.c
+		list_manipulation/swap.c
 
 OBJS = $(SRCS:.c=.o)
 
-all:	$(NAME) compile
+all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS)
+$(NAME): $(OBJS) main.c
+	make -C libft
+	$(CC) $(CFLAGS) main.c $(OBJS) -L libft -lft -o $(NAME)
 
 .c.o:
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
-compile :
-	@$(CC) $(CFLAGS) main.c $(NAME) -o push_swap
+bonus : checker
+
+checker : $(OBJS) checker.c
+	make -C libft
+	$(CC) $(CFLAGS) checker.c $(OBJS) -L libft -lft -o checker
 
 clean:
-	$(RM) $(OBJS)
+	make clean -C libft
+	@$(RM) $(OBJS)
 
 fclean: clean
+	make fclean -C libft
 	$(RM) $(NAME)
 	$(RM) push_swap
+	$(RM) checker
 
 re: fclean all

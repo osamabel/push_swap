@@ -6,7 +6,7 @@
 /*   By: obelkhad <obelkhad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 15:09:05 by obelkhad          #+#    #+#             */
-/*   Updated: 2022/02/17 15:22:48 by obelkhad         ###   ########.fr       */
+/*   Updated: 2022/02/19 16:06:09 by obelkhad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char *argv[])
 		push_swap(&top_a, &top_b);
 	else
 		write(1, "Error\n", 6);
-	display(top_a);
+	if (top_a)
+		free_list(&top_a);
 	return (0);
 }
